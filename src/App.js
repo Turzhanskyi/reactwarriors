@@ -17,21 +17,39 @@ function Flag(props) {
   )
 }
 
-function CountryList (props) {
-  console.log("CountryList props = ", props);
-
-  // деструктуризація констани, щоб повертати обєкти так {name}
-  const {data: {name, alpha3Code, capital,  population, flag }} = props;
-
-  return(
-      <div>
-        <p>Країна: {name}, {alpha3Code}</p>
-        <p>Столиця: {capital}</p>
-        <p>Населення: {population} чол.</p>
-        <Flag src={flag} alt={name} />
-      </div>
-  )
+// переписано function CountryList (props) як class CountryList
+class CountryList extends React.Component {
+  render() {
+        // деструктуризація констани, щоб повертати обєкти так {name}
+    const {data: {name, alpha3Code, capital,  population, flag }} = this.props;
+    console.log(this);
+     return (
+        <div>
+          <p>Країна: {name}, {alpha3Code}</p>
+          <p>Столиця: {capital}</p>
+          <p>Населення: {population} чол.</p>
+          <Flag src={flag} alt={name} />
+        </div>
+    );
+  }
 }
+
+
+// function CountryList (props) {
+//   console.log("CountryList props = ", props);
+//
+//   // деструктуризація констани, щоб повертати обєкти так {name}
+//   const {data: {name, alpha3Code, capital,  population, flag }} = props;
+//
+//   return(
+//       <div>
+//         <p>Країна: {name}, {alpha3Code}</p>
+//         <p>Столиця: {capital}</p>
+//         <p>Населення: {population} чол.</p>
+//         <Flag src={flag} alt={name} />
+//       </div>
+//   )
+// }
 
 function App() {
   return(
