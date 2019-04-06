@@ -1,12 +1,34 @@
 import React from 'react';
 import './App.css'
 
-function MovieItem(props) {
-  console.log("props = ", props);
+const country = {
+  name:"Afghanistan",
+  alpha3Code:"AFG",
+  capital:"Kabul",
+  region:"Asia",
+  population:27657145,
+  flag:"https://restcountries.eu/data/afg.svg"
+};
+
+function Flag(props) {
+  console.log("Flag props = ", props);
+  return(
+      <img src={props.src} alt={props.alt} />
+  )
+}
+
+function CountryList (props) {
+  console.log("CountryList props = ", props);
+
+  // деструктуризація констани, щоб повертати обєкти так {name}
+  const {data: {name, alpha3Code, capital,  population, flag }} = props;
+
   return(
       <div>
-        <p>{props.title}</p>
-        <p>{props.vote_average}</p>
+        <p>Країна: {name}, {alpha3Code}</p>
+        <p>Столиця: {capital}</p>
+        <p>Населення: {population} чол.</p>
+        <Flag src={flag} alt={name} />
       </div>
   )
 }
@@ -14,7 +36,7 @@ function MovieItem(props) {
 function App() {
   return(
       <div className="div">
-        <MovieItem title="Title new" vote_average={10.1}/>
+        <CountryList data={country} />
       </div>
       )
 }
